@@ -83,13 +83,13 @@ const ManageAdmins = () => {
     return (
         <div className="max-w-7xl mx-auto space-y-10 animate-fade-in py-6 px-[10px] sm:px-6 lg:px-8 relative z-10">
             <header className="text-center sm:text-left">
-                <h1 className="text-4xl font-extrabold bg-gradient-to-r from-red-600 to-red-800 bg-clip-text text-transparent mb-2">Manage Admins</h1>
+                <h1 className="text-4xl font-extrabold bg-gradient-to-r from-sky-600 to-sky-800 bg-clip-text text-transparent mb-2">Manage Admins</h1>
                 <p className="text-gray-600 text-lg font-medium">Control system access and user roles</p>
             </header>
 
             {error && (
-                <div className="bg-red-50 border-l-4 border-red-500 p-6 rounded-2xl shadow-lg animate-slide-in">
-                    <p className="text-red-700 font-bold uppercase tracking-tight">{error}</p>
+                <div className="bg-sky-50 border-l-4 border-sky-500 p-6 rounded-2xl shadow-lg animate-slide-in">
+                    <p className="text-sky-700 font-bold uppercase tracking-tight">{error}</p>
                 </div>
             )}
 
@@ -109,7 +109,7 @@ const ManageAdmins = () => {
                                 <tr>
                                     <td colSpan="4" className="px-8 py-20 text-center">
                                         <div className="flex flex-col justify-center items-center space-y-4">
-                                            <div className="animate-spin rounded-full h-12 w-12 border-b-4 border-red-600"></div>
+                                            <div className="animate-spin rounded-full h-12 w-12 border-b-4 border-sky-600"></div>
                                             <p className="text-xs font-black text-gray-400 uppercase tracking-[0.2em]">Loading Users...</p>
                                         </div>
                                     </td>
@@ -122,10 +122,10 @@ const ManageAdmins = () => {
                                 </tr>
                             ) : (
                                 staff.map(member => (
-                                    <tr key={member.id} className="hover:bg-red-50/20 transition-all duration-200 group">
+                                    <tr key={member.id} className="hover:bg-sky-50/20 transition-all duration-200 group">
                                         <td className="px-8 py-6 whitespace-nowrap">
                                             <div className="flex items-center">
-                                                <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-red-500 to-red-700 flex items-center justify-center text-white font-bold shadow-md mr-4 group-hover:scale-110 transition-transform">
+                                                <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-sky-500 to-sky-700 flex items-center justify-center text-white font-bold shadow-md mr-4 group-hover:scale-110 transition-transform">
                                                     {member.email?.charAt(0).toUpperCase()}
                                                 </div>
                                                 <div>
@@ -163,7 +163,7 @@ const ManageAdmins = () => {
                                                 <button
                                                     onClick={() => handleDeleteUser(member.id, member.name || member.email)}
                                                     disabled={member.email === user.email}
-                                                    className="p-2 bg-red-50 text-red-600 rounded-xl hover:bg-red-600 hover:text-white transition-all duration-300 transform hover:scale-110 active:scale-95 disabled:opacity-30 disabled:cursor-not-allowed"
+                                                    className="p-2 bg-sky-50 text-sky-600 rounded-xl hover:bg-sky-600 hover:text-white transition-all duration-300 transform hover:scale-110 active:scale-95 disabled:opacity-30 disabled:cursor-not-allowed"
                                                     title="Delete User"
                                                 >
                                                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -107,8 +107,8 @@ const ManageProducts = () => {
             </header>
 
             {error && (
-                <div className="bg-red-50 border-l-4 border-red-500 p-4 rounded-r-lg">
-                    <p className="text-red-700 font-medium">{error}</p>
+                <div className="bg-sky-50 border-l-4 border-sky-500 p-4 rounded-r-lg">
+                    <p className="text-sky-700 font-medium">{error}</p>
                 </div>
             )}
             {success && (
@@ -124,12 +124,12 @@ const ManageProducts = () => {
                         value={newProduct}
                         onChange={(e) => setNewProduct(e.target.value)}
                         placeholder="Enter new product model name"
-                        className="flex-1 px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all"
+                        className="flex-1 px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none transition-all"
                     />
                     <button
                         type="submit"
                         disabled={!newProduct.trim()}
-                        className="px-6 py-3 bg-red-600 text-white font-bold rounded-xl hover:bg-red-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors shadow-lg shadow-red-500/30"
+                        className="px-6 py-3 bg-sky-600 text-white font-bold rounded-xl hover:bg-sky-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors shadow-lg shadow-sky-500/30"
                     >
                         Add Model
                     </button>
@@ -153,7 +153,7 @@ const ManageProducts = () => {
                                     <span className="font-medium text-gray-900">{product.name}</span>
                                     <button
                                         onClick={() => handleDeleteProduct(product.id)}
-                                        className="text-gray-400 hover:text-red-600 transition-colors p-2 rounded-full hover:bg-red-50 opacity-0 group-hover:opacity-100"
+                                        className="text-gray-400 hover:text-sky-600 transition-colors p-2 rounded-full hover:bg-sky-50 opacity-0 group-hover:opacity-100"
                                         title="Delete product"
                                     >
                                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

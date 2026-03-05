@@ -19,8 +19,8 @@ const PendingApproval = () => {
 
             <div className="w-full max-w-2xl bg-white rounded-[3rem] shadow-[0_40px_100px_-20px_rgba(0,0,0,0.08)] border border-gray-100/50 overflow-hidden text-center">
                 <div className="p-10 sm:p-20">
-                    <div className="w-24 h-24 bg-red-50 rounded-full flex items-center justify-center mx-auto mb-8 shadow-inner">
-                        <svg className="w-12 h-12 text-red-600 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div className="w-24 h-24 bg-sky-50 rounded-full flex items-center justify-center mx-auto mb-8 shadow-inner">
+                        <svg className="w-12 h-12 text-sky-600 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
                     </div>
@@ -29,17 +29,17 @@ const PendingApproval = () => {
 
                     <div className="space-y-4 mb-10">
                         <p className="text-gray-500 font-medium text-lg leading-relaxed">
-                            Hello <span className="text-red-600 font-bold">{user?.displayName || user?.email}</span>, your registration has been received.
+                            Hello <span className="text-sky-600 font-bold">{user?.displayName || user?.email}</span>, your registration has been received.
                         </p>
                         <p className="text-gray-400 text-sm max-w-sm mx-auto">
-                            For security purposes, an administrator must manually verify your credentials before you can access the dashboard.
+                            For security purposes, an administrator must manually verify your cskyentials before you can access the dashboard.
                         </p>
                     </div>
 
                     <div className="bg-gray-50 rounded-2xl p-6 mb-10 inline-flex items-center space-x-3 border border-gray-100">
                         <span className="flex h-3 w-3 relative">
-                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-                            <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
+                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
+                            <span className="relative inline-flex rounded-full h-3 w-3 bg-sky-500"></span>
                         </span>
                         <span className="text-xs font-black text-gray-400 uppercase tracking-widest">Awaiting Verification</span>
                     </div>

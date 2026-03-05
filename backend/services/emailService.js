@@ -36,7 +36,7 @@ const getHtmlBody = (type, data) => {
 
   const bodyBg = '#f1f5f9';
   const containerBg = '#ffffff';
-  const primaryRed = '#dc2626';
+  const primaryRed = '#0ea5e9';
   const textDark = '#1e293b';
   const textLight = '#64748b';
 
@@ -125,7 +125,7 @@ const getHtmlBody = (type, data) => {
   }
 
   if (type === 'responseNotification') {
-    const statusColor = request.status === 'Confirmed' ? '#16a34a' : (request.status === 'Rejected' ? '#dc2626' : '#ca8a04');
+    const statusColor = request.status === 'Confirmed' ? '#16a34a' : (request.status === 'Rejected' ? '#0ea5e9' : '#ca8a04');
     return `
       <html>
         <body style="${commonStyles}">

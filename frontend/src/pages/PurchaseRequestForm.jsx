@@ -165,12 +165,12 @@ const PurchaseRequestForm = () => {
                 </div>
 
                 {error && (
-                    <div className="bg-white rounded-xl shadow-md p-6 border-l-8 border-red-600 animate-slide-in">
+                    <div className="bg-white rounded-xl shadow-md p-6 border-l-8 border-sky-600 animate-slide-in">
                         <div className="flex items-center">
-                            <svg className="w-5 h-5 text-red-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg className="w-5 h-5 text-sky-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                             </svg>
-                            <p className="text-red-700 font-medium">{error}</p>
+                            <p className="text-sky-700 font-medium">{error}</p>
                         </div>
                     </div>
                 )}
@@ -189,15 +189,15 @@ const PurchaseRequestForm = () => {
                     {/* Name */}
                     <div className="bg-white rounded-xl shadow-sm p-8 border border-gray-200 group focus-within:shadow-md transition-shadow">
                         <label className="block text-base font-medium text-gray-900 mb-6">
-                            Name <span className="text-red-600">*</span>
+                            Name <span className="text-sky-600">*</span>
                         </label>
                         <input
                             type="text"
                             name="employeeName"
-                            required
+                            requisky
                             value={formData.employeeName}
                             onChange={handleChange}
-                            className="w-full sm:w-2/3 border-b border-gray-300 focus:border-red-600 focus:outline-none py-2 transition-all duration-300 bg-transparent text-gray-900 placeholder-gray-400 group-focus-within:border-red-600"
+                            className="w-full sm:w-2/3 border-b border-gray-300 focus:border-sky-600 focus:outline-none py-2 transition-all duration-300 bg-transparent text-gray-900 placeholder-gray-400 group-focus-within:border-sky-600"
                             placeholder="Your answer"
                         />
                     </div>
@@ -205,15 +205,15 @@ const PurchaseRequestForm = () => {
                     {/* Phone Number */}
                     <div className="bg-white rounded-xl shadow-sm p-8 border border-gray-200 group focus-within:shadow-md transition-shadow">
                         <label className="block text-base font-medium text-gray-900 mb-6">
-                            Phone Number <span className="text-red-600">*</span>
+                            Phone Number <span className="text-sky-600">*</span>
                         </label>
                         <input
                             type="tel"
                             name="phoneNumber"
-                            required
+                            requisky
                             value={formData.phoneNumber}
                             onChange={handleChange}
-                            className="w-full sm:w-2/3 border-b border-gray-300 focus:border-red-600 focus:outline-none py-2 transition-all duration-300 bg-transparent text-gray-900 placeholder-gray-400 group-focus-within:border-red-600"
+                            className="w-full sm:w-2/3 border-b border-gray-300 focus:border-sky-600 focus:outline-none py-2 transition-all duration-300 bg-transparent text-gray-900 placeholder-gray-400 group-focus-within:border-sky-600"
                             placeholder="Your answer"
                         />
                     </div>
@@ -221,15 +221,15 @@ const PurchaseRequestForm = () => {
                     {/* Email Address */}
                     <div className="bg-white rounded-xl shadow-sm p-8 border border-gray-200 group focus-within:shadow-md transition-shadow">
                         <label className="block text-base font-medium text-gray-900 mb-6">
-                            Email Address <span className="text-red-600">*</span>
+                            Email Address <span className="text-sky-600">*</span>
                         </label>
                         <input
                             type="email"
                             name="publicEmail"
-                            required
+                            requisky
                             value={formData.publicEmail}
                             onChange={handleChange}
-                            className="w-full sm:w-2/3 border-b border-gray-300 focus:border-red-600 focus:outline-none py-2 transition-all duration-300 bg-transparent text-gray-900 placeholder-gray-400 group-focus-within:border-red-600"
+                            className="w-full sm:w-2/3 border-b border-gray-300 focus:border-sky-600 focus:outline-none py-2 transition-all duration-300 bg-transparent text-gray-900 placeholder-gray-400 group-focus-within:border-sky-600"
                             placeholder="Your answer"
                         />
                     </div>
@@ -237,21 +237,21 @@ const PurchaseRequestForm = () => {
                     {/* Receipt Upload */}
                     <div className="bg-white rounded-xl shadow-sm p-8 border border-gray-200 group focus-within:shadow-md transition-shadow">
                         <label className="block text-base font-medium text-gray-900 mb-2">
-                            Upload the receipt of your purchase <span className="text-red-600">*</span>
+                            Upload the receipt of your purchase <span className="text-sky-600">*</span>
                         </label>
                         <p className="text-xs text-gray-500 mb-6">Upload 1 supported file: PDF or image. Max 10 MB.</p>
                         <div className="flex flex-col items-start gap-4">
                             <input
                                 type="file"
                                 accept="image/*,application/pdf"
-                                required
+                                requisky
                                 onChange={handleReceiptChange}
                                 className="block w-full text-sm text-gray-500
                                           file:mr-4 file:py-2 file:px-4
                                           file:rounded-full file:border-0
                                           file:text-sm file:font-semibold
-                                          file:bg-red-50 file:text-red-700
-                                          hover:file:bg-red-100
+                                          file:bg-sky-50 file:text-sky-700
+                                          hover:file:bg-sky-100
                                           transition-all duration-300"
                             />
                             {receiptPreview && (
@@ -264,7 +264,7 @@ const PurchaseRequestForm = () => {
                                     <button
                                         type="button"
                                         onClick={() => { setReceiptFile(null); setReceiptPreview(null); }}
-                                        className="absolute top-2 right-2 bg-red-600 text-white p-1 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity"
+                                        className="absolute top-2 right-2 bg-sky-600 text-white p-1 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity"
                                     >
                                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
@@ -278,15 +278,15 @@ const PurchaseRequestForm = () => {
                     {/* Serial Number */}
                     <div className="bg-white rounded-xl shadow-sm p-8 border border-gray-200 group focus-within:shadow-md transition-shadow">
                         <label className="block text-base font-medium text-gray-900 mb-6">
-                            Enter the serial number of the product you purchased <span className="text-red-600">*</span>
+                            Enter the serial number of the product you purchased <span className="text-sky-600">*</span>
                         </label>
                         <input
                             type="text"
                             name="serialNumber"
-                            required
+                            requisky
                             value={formData.serialNumber}
                             onChange={handleChange}
-                            className="w-full sm:w-2/3 border-b border-gray-300 focus:border-red-600 focus:outline-none py-2 transition-all duration-300 bg-transparent text-gray-900 placeholder-gray-400 group-focus-within:border-red-600"
+                            className="w-full sm:w-2/3 border-b border-gray-300 focus:border-sky-600 focus:outline-none py-2 transition-all duration-300 bg-transparent text-gray-900 placeholder-gray-400 group-focus-within:border-sky-600"
                             placeholder="Your answer"
                         />
                     </div>
@@ -294,21 +294,21 @@ const PurchaseRequestForm = () => {
                     {/* Box Photo Upload */}
                     <div className="bg-white rounded-xl shadow-sm p-8 border border-gray-200 group focus-within:shadow-md transition-shadow">
                         <label className="block text-base font-medium text-gray-900 mb-2">
-                            Upload the photo of the box, which includes the serial number <span className="text-red-600">*</span>
+                            Upload the photo of the box, which includes the serial number <span className="text-sky-600">*</span>
                         </label>
                         <p className="text-xs text-gray-500 mb-6">Upload 1 supported file: PDF, document, or image. Max 10 MB.</p>
                         <div className="flex flex-col items-start gap-4">
                             <input
                                 type="file"
                                 accept="image/*,application/pdf,.doc,.docx"
-                                required
+                                requisky
                                 onChange={handleBoxPhotoChange}
                                 className="block w-full text-sm text-gray-500
                                           file:mr-4 file:py-2 file:px-4
                                           file:rounded-full file:border-0
                                           file:text-sm file:font-semibold
-                                          file:bg-red-50 file:text-red-700
-                                          hover:file:bg-red-100
+                                          file:bg-sky-50 file:text-sky-700
+                                          hover:file:bg-sky-100
                                           transition-all duration-300"
                             />
                             {boxPhotoPreview && (
@@ -321,7 +321,7 @@ const PurchaseRequestForm = () => {
                                     <button
                                         type="button"
                                         onClick={() => { setBoxPhotoFile(null); setBoxPhotoPreview(null); }}
-                                        className="absolute top-2 right-2 bg-red-600 text-white p-1 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity"
+                                        className="absolute top-2 right-2 bg-sky-600 text-white p-1 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity"
                                     >
                                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
@@ -335,30 +335,30 @@ const PurchaseRequestForm = () => {
                     {/* Shop Name */}
                     <div className="bg-white rounded-xl shadow-sm p-8 border border-gray-200 group focus-within:shadow-md transition-shadow">
                         <label className="block text-base font-medium text-gray-900 mb-6">
-                            Shop Name <span className="text-red-600">*</span>
+                            Shop Name <span className="text-sky-600">*</span>
                         </label>
                         <input
                             type="text"
                             name="shopName"
-                            required
+                            requisky
                             value={formData.shopName}
                             onChange={handleChange}
-                            className="w-full sm:w-2/3 border-b border-gray-300 focus:border-red-600 focus:outline-none py-2 transition-all duration-300 bg-transparent text-gray-900 placeholder-gray-400 group-focus-within:border-red-600"
+                            className="w-full sm:w-2/3 border-b border-gray-300 focus:border-sky-600 focus:outline-none py-2 transition-all duration-300 bg-transparent text-gray-900 placeholder-gray-400 group-focus-within:border-sky-600"
                             placeholder="Your answer"
                         />
                     </div>
 
                     <div className="bg-white rounded-xl shadow-sm p-8 border border-gray-200 group focus-within:shadow-md transition-shadow">
                         <label className="block text-base font-medium text-gray-900 mb-4">
-                            Tell us your best Hikmicro experience (150 words minimum) <span className="text-red-600">*</span>
+                            Tell us your best Hikmicro experience (150 words minimum) <span className="text-sky-600">*</span>
                         </label>
                         <textarea
                             name="experience"
-                            required
+                            requisky
                             value={formData.experience}
                             onChange={handleChange}
                             rows="6"
-                            className="w-full border border-gray-300 rounded-xl focus:border-red-600 focus:outline-none p-4 transition-all duration-300 bg-transparent text-gray-900 placeholder-gray-400 group-focus-within:border-red-600"
+                            className="w-full border border-gray-300 rounded-xl focus:border-sky-600 focus:outline-none p-4 transition-all duration-300 bg-transparent text-gray-900 placeholder-gray-400 group-focus-within:border-sky-600"
                             placeholder="Your answer"
                         ></textarea>
                     </div>
@@ -368,7 +368,7 @@ const PurchaseRequestForm = () => {
                             type="submit"
                             disabled={loading}
                             className={`px-10 py-3 text-white font-bold rounded-xl shadow-md transition-all duration-300 transform active:scale-95 ${loading ? 'opacity-70 cursor-not-allowed' : 'hover:scale-[1.02] hover:shadow-lg'}`}
-                            style={{ background: 'linear-gradient(135deg, #dc2626 0%, #991b1b 100%)' }}
+                            style={{ background: 'linear-gradient(135deg, #0284c7 0%, #075985 100%)' }}
                         >
                             {loading ? 'Sending...' : 'Submit'}
                         </button>

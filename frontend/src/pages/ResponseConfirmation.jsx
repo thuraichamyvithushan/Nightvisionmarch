@@ -87,7 +87,7 @@ const ResponseConfirmation = () => {
     const renderDetailRow = (label, value, isHighlighted = false) => (
         <div className="flex flex-col sm:flex-row sm:items-baseline justify-between py-4 border-b border-gray-50 last:border-0 group">
             <span className="text-gray-400 text-[10px] font-black uppercase tracking-[0.2em] mb-1 sm:mb-0">{label}</span>
-            <span className={`text-sm font-bold ${isHighlighted ? 'text-red-700' : 'text-gray-900'} sm:text-right sm:ml-8 leading-relaxed line-clamp-2`}>
+            <span className={`text-sm font-bold ${isHighlighted ? 'text-sky-700' : 'text-gray-900'} sm:text-right sm:ml-8 leading-relaxed line-clamp-2`}>
                 {value || '---'}
             </span>
         </div>
@@ -103,7 +103,7 @@ const ResponseConfirmation = () => {
                 <div className="p-10 sm:p-20">
                     {loading ? (
                         <div className="flex flex-col items-center py-12">
-                            <div className="w-16 h-16 border-4 border-red-100 border-t-red-600 rounded-full animate-spin mb-6"></div>
+                            <div className="w-16 h-16 border-4 border-sky-100 border-t-sky-600 rounded-full animate-spin mb-6"></div>
                             <p className="text-gray-400 font-bold uppercase tracking-widest text-sm animate-pulse">Fetching Request...</p>
                         </div>
                     ) : status === 'success' ? (
@@ -117,26 +117,26 @@ const ResponseConfirmation = () => {
                             <p className="text-gray-500 font-medium text-lg mb-4">{message}</p>
                             <div className="inline-flex items-center px-4 py-2 bg-gray-50 rounded-full border border-gray-100">
                                 <span className="text-xs font-black text-gray-400 uppercase tracking-widest mr-2">Status:</span>
-                                <span className="text-xs font-bold text-red-600 uppercase tracking-widest">
-                                    {action === 'needinfo' ? 'Update Required' : action.toUpperCase()}
+                                <span className="text-xs font-bold text-sky-600 uppercase tracking-widest">
+                                    {action === 'needinfo' ? 'Update Requisky' : action.toUpperCase()}
                                 </span>
                             </div>
                         </div>
                     ) : status === 'error' ? (
                         <div className="text-center py-8">
-                            <div className="w-20 h-20 bg-red-50 rounded-3xl flex items-center justify-center mx-auto mb-6 transform -rotate-6 shadow-lg shadow-red-100">
-                                <svg className="w-10 h-10 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <div className="w-20 h-20 bg-sky-50 rounded-3xl flex items-center justify-center mx-auto mb-6 transform -rotate-6 shadow-lg shadow-sky-100">
+                                <svg className="w-10 h-10 text-sky-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M6 18L18 6M6 6l12 12" />
                                 </svg>
                             </div>
                             <h2 className="text-3xl font-black text-gray-900 mb-4 tracking-tight">Oops!</h2>
-                            <p className="text-red-600 font-bold text-lg mb-2">{message}</p>
+                            <p className="text-sky-600 font-bold text-lg mb-2">{message}</p>
                             <p className="text-gray-500 text-sm">Please contact support if you believe this is an error.</p>
                         </div>
                     ) : requestData ? (
                         <div className="space-y-12">
                             <div className="flex items-center space-x-5 animate-slide-in">
-                                <div className={`p-4 rounded-3xl ${action === 'confirm' ? 'bg-green-50 text-green-600 shadow-[0_8px_30px_rgb(22,163,74,0.1)]' : 'bg-red-50 text-red-600 shadow-[0_8px_30px_rgb(220,38,38,0.1)]'}`}>
+                                <div className={`p-4 rounded-3xl ${action === 'confirm' ? 'bg-green-50 text-green-600 shadow-[0_8px_30px_rgb(22,163,74,0.1)]' : 'bg-sky-50 text-sky-600 shadow-[0_8px_30px_rgb(220,38,38,0.1)]'}`}>
                                     {action === 'confirm' ? (
                                         <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -159,7 +159,7 @@ const ResponseConfirmation = () => {
 
                             <div className="bg-gray-50/50 rounded-[2.5rem] p-10 sm:p-12 border border-gray-100">
                                 <div className="flex items-center space-x-3 mb-8">
-                                    <div className="w-1.5 h-6 bg-red-600 rounded-full"></div>
+                                    <div className="w-1.5 h-6 bg-sky-600 rounded-full"></div>
                                     <h2 className="text-xl font-bold text-gray-900 tracking-tight">Request Details</h2>
                                 </div>
                                 <div className="space-y-1">
@@ -179,8 +179,8 @@ const ResponseConfirmation = () => {
 
                             <div className="space-y-10">
                                 {action === 'confirm' ? (
-                                    <div className="bg-red-50/50 rounded-[2rem] p-8 sm:p-10 border border-red-100/50">
-                                        <h4 className="text-red-900 font-black text-sm uppercase tracking-widest mb-6 border-b border-red-100 pb-4">CONFIRMATION & ACCEPTANCE</h4>
+                                    <div className="bg-sky-50/50 rounded-[2rem] p-8 sm:p-10 border border-sky-100/50">
+                                        <h4 className="text-sky-900 font-black text-sm uppercase tracking-widest mb-6 border-b border-sky-100 pb-4">CONFIRMATION & ACCEPTANCE</h4>
                                         <div className="space-y-5">
                                             <label className="flex items-start space-x-4 group cursor-pointer">
                                                 <div className="relative flex items-center mt-1">
@@ -188,13 +188,13 @@ const ResponseConfirmation = () => {
                                                         type="checkbox"
                                                         checked={termsAgreed}
                                                         onChange={(e) => setTermsAgreed(e.target.checked)}
-                                                        className="peer h-6 w-6 border-2 border-red-200 rounded-lg bg-white checked:bg-red-600 checked:border-red-600 transition-all duration-300 appearance-none cursor-pointer"
+                                                        className="peer h-6 w-6 border-2 border-sky-200 rounded-lg bg-white checked:bg-sky-600 checked:border-sky-600 transition-all duration-300 appearance-none cursor-pointer"
                                                     />
                                                     <svg className="absolute w-4 h-4 text-white opacity-0 peer-checked:opacity-100 transition-opacity duration-300 pointer-events-none top-1 left-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M5 13l4 4L19 7" />
                                                     </svg>
                                                 </div>
-                                                <span className="text-red-800 text-sm font-bold leading-relaxed group-hover:text-red-900 transition-colors">
+                                                <span className="text-sky-800 text-sm font-bold leading-relaxed group-hover:text-sky-900 transition-colors">
                                                     By submitting this form, I confirm that:<br />
 
                                                     I agree to register for the Sight App using the same email address provided above.<br />
@@ -211,7 +211,7 @@ const ResponseConfirmation = () => {
                                             value={note}
                                             onChange={(e) => setNote(e.target.value)}
                                             placeholder="Example: The FOB price is incorrect, or the serial number has a typo..."
-                                            className="w-full bg-gray-50/50 border-2 border-gray-100 rounded-3xl p-6 text-sm font-bold text-gray-900 placeholder-gray-300 focus:border-red-600 focus:bg-white outline-none transition-all duration-300 h-32 resize-none"
+                                            className="w-full bg-gray-50/50 border-2 border-gray-100 rounded-3xl p-6 text-sm font-bold text-gray-900 placeholder-gray-300 focus:border-sky-600 focus:bg-white outline-none transition-all duration-300 h-32 resize-none"
                                         />
                                     </div>
                                 )}
@@ -220,7 +220,7 @@ const ResponseConfirmation = () => {
                                     onClick={handleConfirm}
                                     disabled={isSubmitting || (action === 'confirm' && !termsAgreed)}
                                     className={`w-full py-6 px-10 rounded-3xl text-white font-black text-lg transition-all duration-300 transform shadow-xl flex items-center justify-center space-x-3
-                                        bg-red-600 hover:bg-black hover:shadow-2xl active:scale-95
+                                        bg-sky-600 hover:bg-black hover:shadow-2xl active:scale-95
                                         ${(isSubmitting || (action === 'confirm' && !termsAgreed))
                                             ? 'cursor-not-allowed'
                                             : ''

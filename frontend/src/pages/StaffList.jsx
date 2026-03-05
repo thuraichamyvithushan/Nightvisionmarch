@@ -81,7 +81,7 @@ const StaffList = () => {
 
             {loading ? (
                 <div className="flex flex-col justify-center items-center py-20 space-y-4">
-                    <div className="animate-spin rounded-full h-12 w-12 border-b-4 border-red-600"></div>
+                    <div className="animate-spin rounded-full h-12 w-12 border-b-4 border-sky-600"></div>
                     <p className="text-gray-400 font-bold uppercase tracking-[0.2em] text-xs">Loading staff directories...</p>
                 </div>
             ) : (

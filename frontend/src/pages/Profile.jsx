@@ -67,12 +67,12 @@ const Profile = () => {
         <div className="max-w-4xl mx-auto space-y-8 animate-fade-in">
             {/* Profile Header */}
             <div className="bg-white/80 backdrop-blur-md p-8 rounded-3xl shadow-xl border border-gray-100 flex flex-col items-center sm:flex-row sm:space-x-8">
-                <div className="w-24 h-24 rounded-full bg-gradient-to-br from-red-500 to-red-600 flex items-center justify-center text-3xl font-bold text-white shadow-lg mb-4 sm:mb-0">
+                <div className="w-24 h-24 rounded-full bg-gradient-to-br from-sky-500 to-sky-600 flex items-center justify-center text-3xl font-bold text-white shadow-lg mb-4 sm:mb-0">
                     {user?.email?.charAt(0).toUpperCase() || 'U'}
                 </div>
                 <div className="text-center sm:text-left">
                     <h1 className="text-3xl font-extrabold text-gray-900">{user?.displayName || 'Admin'}</h1>
-                    <p className="text-red-600 font-bold text-sm tracking-wider uppercase bg-red-50 px-3 py-1 rounded-full inline-block mt-2">
+                    <p className="text-sky-600 font-bold text-sm tracking-wider uppercase bg-sky-50 px-3 py-1 rounded-full inline-block mt-2">
                         {role} Account
                     </p>
                 </div>
@@ -81,7 +81,7 @@ const Profile = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div className="bg-white/95 backdrop-blur-md p-8 rounded-3xl shadow-2xl border border-gray-100 space-y-6">
                     <div className="flex items-center space-x-3 mb-4">
-                        <div className="w-1.5 h-6 bg-red-600 rounded-full"></div>
+                        <div className="w-1.5 h-6 bg-sky-600 rounded-full"></div>
                         <h2 className="text-xl font-bold text-gray-900">Basic Information</h2>
                     </div>
 
@@ -92,7 +92,7 @@ const Profile = () => {
                                 type="text"
                                 value={displayName}
                                 onChange={(e) => setDisplayName(e.target.value)}
-                                className="w-full border-b-2 border-gray-100 focus:border-red-600 focus:outline-none py-2 transition-all duration-300 bg-transparent text-gray-900"
+                                className="w-full border-b-2 border-gray-100 focus:border-sky-600 focus:outline-none py-2 transition-all duration-300 bg-transparent text-gray-900"
                                 placeholder="Enter your name"
                             />
                         </div>
@@ -118,7 +118,7 @@ const Profile = () => {
                         </button>
 
                         {profileMessage && (
-                            <div className={`p-4 rounded-xl text-sm font-bold animate-slide-in ${isProfileError ? 'bg-red-50 text-red-700' : 'bg-green-50 text-green-700'}`}>
+                            <div className={`p-4 rounded-xl text-sm font-bold animate-slide-in ${isProfileError ? 'bg-sky-50 text-sky-700' : 'bg-green-50 text-green-700'}`}>
                                 {profileMessage}
                             </div>
                         )}
@@ -128,7 +128,7 @@ const Profile = () => {
                 {/* Change Password Section */}
                 <div className="bg-white/95 backdrop-blur-md p-8 rounded-3xl shadow-2xl border border-gray-100 space-y-6">
                     <div className="flex items-center space-x-3 mb-4">
-                        <div className="w-1.5 h-6 bg-red-600 rounded-full"></div>
+                        <div className="w-1.5 h-6 bg-sky-600 rounded-full"></div>
                         <h2 className="text-xl font-bold text-gray-900">Security</h2>
                     </div>
 
@@ -139,8 +139,8 @@ const Profile = () => {
                                 type="password"
                                 value={newPassword}
                                 onChange={(e) => setNewPassword(e.target.value)}
-                                required
-                                className="w-full border-b-2 border-gray-100 focus:border-red-600 focus:outline-none py-2 transition-all duration-300 bg-transparent text-gray-900"
+                                requisky
+                                className="w-full border-b-2 border-gray-100 focus:border-sky-600 focus:outline-none py-2 transition-all duration-300 bg-transparent text-gray-900"
                                 placeholder="••••••••"
                             />
                         </div>
@@ -151,8 +151,8 @@ const Profile = () => {
                                 type="password"
                                 value={confirmPassword}
                                 onChange={(e) => setConfirmPassword(e.target.value)}
-                                required
-                                className="w-full border-b-2 border-gray-100 focus:border-red-600 focus:outline-none py-2 transition-all duration-300 bg-transparent text-gray-900"
+                                requisky
+                                className="w-full border-b-2 border-gray-100 focus:border-sky-600 focus:outline-none py-2 transition-all duration-300 bg-transparent text-gray-900"
                                 placeholder="••••••••"
                             />
                         </div>
@@ -167,7 +167,7 @@ const Profile = () => {
                         </button>
 
                         {passwordMessage && (
-                            <div className={`p-4 rounded-xl text-sm font-bold animate-slide-in ${isPasswordError ? 'bg-red-50 text-red-700' : 'bg-green-50 text-green-700'}`}>
+                            <div className={`p-4 rounded-xl text-sm font-bold animate-slide-in ${isPasswordError ? 'bg-sky-50 text-sky-700' : 'bg-green-50 text-green-700'}`}>
                                 {passwordMessage}
                             </div>
                         )}

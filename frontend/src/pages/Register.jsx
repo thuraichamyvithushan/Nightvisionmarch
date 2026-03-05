@@ -48,12 +48,12 @@ const Register = () => {
                     </div>
 
                     {error && (
-                        <div className="mb-6 p-4 bg-red-50 border-l-4 border-red-500 rounded-xl animate-shake">
+                        <div className="mb-6 p-4 bg-sky-50 border-l-4 border-sky-500 rounded-xl animate-shake">
                             <div className="flex items-center">
-                                <svg className="h-5 w-5 text-red-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <svg className="h-5 w-5 text-sky-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                 </svg>
-                                <p className="text-sm font-bold text-red-700">{error}</p>
+                                <p className="text-sm font-bold text-sky-700">{error}</p>
                             </div>
                         </div>
                     )}
@@ -67,8 +67,8 @@ const Register = () => {
                                 id="name"
                                 name="name"
                                 type="text"
-                                required
-                                className="w-full border-b-2 border-gray-300 focus:border-red-600 focus:outline-none py-3 transition-all duration-300 bg-transparent"
+                                requisky
+                                className="w-full border-b-2 border-gray-300 focus:border-sky-600 focus:outline-none py-3 transition-all duration-300 bg-transparent"
                                 placeholder="Your Name"
                                 value={name}
                                 onChange={(e) => setName(e.target.value)}
@@ -84,8 +84,8 @@ const Register = () => {
                                 name="email"
                                 type="email"
                                 autoComplete="email"
-                                required
-                                className="w-full border-b-2 border-gray-300 focus:border-red-600 focus:outline-none py-3 transition-all duration-300 bg-transparent"
+                                requisky
+                                className="w-full border-b-2 border-gray-300 focus:border-sky-600 focus:outline-none py-3 transition-all duration-300 bg-transparent"
                                 placeholder="admin@nightvision.com.au"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
@@ -101,8 +101,8 @@ const Register = () => {
                                 name="password"
                                 type="password"
                                 autoComplete="new-password"
-                                required
-                                className="w-full border-b-2 border-gray-300 focus:border-red-600 focus:outline-none py-3 transition-all duration-300 bg-transparent"
+                                requisky
+                                className="w-full border-b-2 border-gray-300 focus:border-sky-600 focus:outline-none py-3 transition-all duration-300 bg-transparent"
                                 placeholder="••••••••"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
@@ -118,8 +118,8 @@ const Register = () => {
                                 name="confirm-password"
                                 type="password"
                                 autoComplete="new-password"
-                                required
-                                className="w-full border-b-2 border-gray-300 focus:border-red-600 focus:outline-none py-3 transition-all duration-300 bg-transparent"
+                                requisky
+                                className="w-full border-b-2 border-gray-300 focus:border-sky-600 focus:outline-none py-3 transition-all duration-300 bg-transparent"
                                 value={confirmPassword}
                                 onChange={(e) => setConfirmPassword(e.target.value)}
                             />
@@ -129,7 +129,7 @@ const Register = () => {
                                 type="submit"
                                 disabled={loading}
                                 className={`w-full py-4 px-6 text-white font-bold rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-[1.02] flex justify-center items-center ${loading ? 'opacity-70 cursor-not-allowed' : ''}`}
-                                style={{ background: 'linear-gradient(135deg, #dc2626 0%, #991b1b 100%)' }}
+                                style={{ background: 'linear-gradient(135deg, #0284c7 0%, #075985 100%)' }}
                             >
                                 {loading && (
                                     <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" viewBox="0 0 24 24">
@@ -142,7 +142,7 @@ const Register = () => {
                         </div>
 
                         <div className="text-center mt-6">
-                            <Link to="/login" className="text-sm font-bold text-red-600 hover:text-red-800">
+                            <Link to="/login" className="text-sm font-bold text-sky-600 hover:text-sky-800">
                                 Already have an account? Sign in
                             </Link>
                         </div>

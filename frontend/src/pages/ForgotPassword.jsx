@@ -43,7 +43,7 @@ const ForgotPassword = () => {
 
                     <form className="space-y-6" onSubmit={handleSubmit}>
                         <div className="group">
-                            <label htmlFor="email-address" className="block text-sm font-semibold text-gray-700 mb-2 transition-colors group-focus-within:text-red-600">
+                            <label htmlFor="email-address" className="block text-sm font-semibold text-gray-700 mb-2 transition-colors group-focus-within:text-sky-600">
                                 Email address
                             </label>
                             <input
@@ -51,9 +51,9 @@ const ForgotPassword = () => {
                                 name="email"
                                 type="email"
                                 autoComplete="email"
-                                required
+                                requisky
                                 disabled={!!user}
-                                className="w-full border-b-2 border-gray-200 focus:border-red-600 focus:outline-none py-3 transition-all duration-300 bg-transparent text-gray-900 placeholder-gray-400"
+                                className="w-full border-b-2 border-gray-200 focus:border-sky-600 focus:outline-none py-3 transition-all duration-300 bg-transparent text-gray-900 placeholder-gray-400"
                                 placeholder="admin@nightvision.com.au"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
@@ -61,8 +61,8 @@ const ForgotPassword = () => {
                         </div>
 
                         {error && (
-                            <div className="rounded-xl bg-red-50 p-4 border border-red-200 animate-slide-in">
-                                <p className="text-sm font-bold text-red-800">{error}</p>
+                            <div className="rounded-xl bg-sky-50 p-4 border border-sky-200 animate-slide-in">
+                                <p className="text-sm font-bold text-sky-800">{error}</p>
                             </div>
                         )}
 
@@ -76,7 +76,7 @@ const ForgotPassword = () => {
                             <button
                                 type="submit"
                                 disabled={loading}
-                                className={`w-full py-4 px-6 text-white font-bold rounded-2xl shadow-lg hover:shadow-2xl focus:outline-none focus:ring-4 focus:ring-red-200 transition-all duration-300 transform hover:scale-[1.02] active:scale-95 flex justify-center items-center ${loading ? 'opacity-70 cursor-not-allowed' : ''}`}
+                                className={`w-full py-4 px-6 text-white font-bold rounded-2xl shadow-lg hover:shadow-2xl focus:outline-none focus:ring-4 focus:ring-sky-200 transition-all duration-300 transform hover:scale-[1.02] active:scale-95 flex justify-center items-center ${loading ? 'opacity-70 cursor-not-allowed' : ''}`}
                                 style={{ background: 'linear-gradient(135deg, #dc2626 0%, #991b1b 100%)' }}
                             >
                                 {loading && (
@@ -94,13 +94,13 @@ const ForgotPassword = () => {
                         {user ? (
                             <button
                                 type="button"
-                                className="text-sm font-bold text-red-600 hover:text-red-800 transition-colors"
+                                className="text-sm font-bold text-sky-600 hover:text-sky-800 transition-colors"
                                 onClick={() => navigate(-1)}
                             >
                                 Go Back
                             </button>
                         ) : (
-                            <Link to="/login" className="text-sm font-bold text-red-600 hover:text-red-800 transition-colors">
+                            <Link to="/login" className="text-sm font-bold text-sky-600 hover:text-sky-800 transition-colors">
                                 Back to Login
                             </Link>
                         )}

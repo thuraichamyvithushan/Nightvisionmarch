@@ -16,8 +16,6 @@ const ViewResponses = () => {
 
     const [selectedRequest, setSelectedRequest] = useState(null);
     const [isViewModalOpen, setIsViewModalOpen] = useState(false);
-    const [isEditing, setIsEditing] = useState(false);
-    const [editData, setEditData] = useState({});
 
     const [requestToDelete, setRequestToDelete] = useState(null);
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
@@ -55,33 +53,6 @@ const ViewResponses = () => {
         }
     };
 
-    const handleUpdate = async () => {
-        try {
-            const token = await user.getIdToken();
-            const response = await fetch(
-                `${API_BASE_URL}/api/admin/purchase-requests/${selectedRequest.id}`,
-                {
-                    method: 'PUT',
-                    headers: {
-                        'Authorization': `Bearer ${token}`,
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(editData)
-                }
-            );
-
-            if (response.ok) {
-                setRequests(requests.map(r => r.id === selectedRequest.id ? { ...r, ...editData } : r));
-                setSelectedRequest({ ...selectedRequest, ...editData });
-                setIsEditing(false);
-            } else {
-                const data = await response.json();
-                setError(data.error || 'Failed to update request');
-            }
-        } catch (err) {
-            setError(err.message);
-        }
-    };
 
     const handleDelete = async () => {
         if (!requestToDelete) return;
@@ -125,34 +96,25 @@ const ViewResponses = () => {
     };
 
 
-    const renderModalField = (label, value, fieldName) => (
+    const renderModalField = (label, value) => (
         <div className="py-4 border-b border-gray-50 last:border-0 flex flex-col sm:flex-row sm:items-start justify-between group gap-2">
             <span className="text-gray-400 font-black uppercase tracking-[0.2em] text-[10px] sm:w-1/3 flex-shrink-0 pt-1">{label}</span>
-            {isEditing && fieldName ? (
-                <input
-                    type="text"
-                    value={editData[fieldName] || ''}
-                    onChange={(e) => setEditData({ ...editData, [fieldName]: e.target.value })}
-                    className="flex-grow bg-gray-50 border-b border-red-600 focus:outline-none py-1 px-2 font-bold text-sm text-gray-900 rounded"
-                />
-            ) : (
-                <span className="text-gray-900 font-bold text-sm sm:text-right leading-relaxed break-words flex-grow">{value || '---'}</span>
-            )}
+            <span className="text-gray-900 font-bold text-sm sm:text-right leading-relaxed break-words flex-grow">{value || '---'}</span>
         </div>
     );
 
     return (
         <div className="max-w-7xl mx-auto space-y-10 animate-fade-in relative z-10 py-6 px-[10px] sm:px-6 lg:px-8">
             <header className="text-center sm:text-left">
-                <h1 className="text-4xl font-extrabold bg-gradient-to-r from-red-600 to-red-800 bg-clip-text text-transparent mb-2">View Responses</h1>
+                <h1 className="text-4xl font-extrabold bg-gradient-to-r from-sky-600 to-sky-800 bg-clip-text text-transparent mb-2">View Responses</h1>
                 <p className="text-gray-600 text-lg font-medium">Track and manage all Night Vision Form submissions</p>
             </header>
 
             <div className="bg-white/90 backdrop-blur-xl p-8 rounded-[2.5rem] shadow-2xl border border-white/20 relative overflow-hidden group">
-                <div className="absolute top-0 right-0 w-40 h-40 bg-red-500/5 rounded-full -mr-20 -mt-20 transition-transform duration-700 group-hover:scale-150"></div>
+                <div className="absolute top-0 right-0 w-40 h-40 bg-sky-500/5 rounded-full -mr-20 -mt-20 transition-transform duration-700 group-hover:scale-150"></div>
 
                 <h2 className="text-xl font-black text-gray-900 mb-8 tracking-tight flex items-center">
-                    <svg className="w-5 h-5 mr-2 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-5 h-5 mr-2 text-sky-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
                     </svg>
                     Filters
@@ -167,7 +129,7 @@ const ViewResponses = () => {
                             value={filters.shop}
                             onChange={handleFilterChange}
                             placeholder="e.g. JB Hi-Fi"
-                            className="w-full bg-gray-50/50 border-b-2 border-gray-200 focus:border-red-600 focus:outline-none py-3 px-1 transition-all duration-300 font-bold text-gray-900 placeholder-gray-400 rounded-lg"
+                            className="w-full bg-gray-50/50 border-b-2 border-gray-200 focus:border-sky-600 focus:outline-none py-3 px-1 transition-all duration-300 font-bold text-gray-900 placeholder-gray-400 rounded-lg"
                         />
                     </div>
                     <div className="space-y-2">
@@ -178,7 +140,7 @@ const ViewResponses = () => {
                             value={filters.employee}
                             onChange={handleFilterChange}
                             placeholder="e.g. John Doe"
-                            className="w-full bg-gray-50/50 border-b-2 border-gray-200 focus:border-red-600 focus:outline-none py-3 px-1 transition-all duration-300 font-bold text-gray-900 placeholder-gray-400 rounded-lg"
+                            className="w-full bg-gray-50/50 border-b-2 border-gray-200 focus:border-sky-600 focus:outline-none py-3 px-1 transition-all duration-300 font-bold text-gray-900 placeholder-gray-400 rounded-lg"
                         />
                     </div>
                 </div>
@@ -187,7 +149,7 @@ const ViewResponses = () => {
                     <button
                         onClick={applyFilters}
                         className="flex-1 py-4 px-8 text-white font-bold rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-[1.02] active:scale-95 flex items-center justify-center space-x-2"
-                        style={{ background: 'linear-gradient(135deg, #dc2626 0%, #991b1b 100%)' }}
+                        style={{ background: 'linear-gradient(135deg, #0284c7 0%, #075985 100%)' }}
                     >
                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -204,12 +166,12 @@ const ViewResponses = () => {
             </div>
 
             {error && (
-                <div className="bg-red-50 border-l-4 border-red-500 p-6 rounded-2xl shadow-lg animate-slide-in">
+                <div className="bg-sky-50 border-l-4 border-sky-500 p-6 rounded-2xl shadow-lg animate-slide-in">
                     <div className="flex items-center">
-                        <svg className="w-6 h-6 text-red-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-6 h-6 text-sky-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
-                        <p className="text-red-700 font-bold uppercase tracking-tight">{error}</p>
+                        <p className="text-sky-700 font-bold uppercase tracking-tight">{error}</p>
                     </div>
                 </div>
             )}
@@ -217,7 +179,7 @@ const ViewResponses = () => {
             <div className="bg-white/95 backdrop-blur-xl rounded-[2.5rem] shadow-2xl border border-white/20 overflow-hidden relative">
                 {loading ? (
                     <div className="flex flex-col justify-center items-center py-20 space-y-4">
-                        <div className="animate-spin rounded-full h-16 w-16 border-b-4 border-red-600 shadow-inner"></div>
+                        <div className="animate-spin rounded-full h-16 w-16 border-b-4 border-sky-600 shadow-inner"></div>
                         <p className="text-gray-500 font-bold animate-pulse uppercase tracking-[0.2em] text-xs">Fetching Data...</p>
                     </div>
                 ) : (
@@ -251,7 +213,7 @@ const ViewResponses = () => {
                                     </tr>
                                 ) : (
                                     requests.map((request) => (
-                                        <tr key={request.id} className="hover:bg-red-50/30 transition-colors duration-200 group">
+                                        <tr key={request.id} className="hover:bg-sky-50/30 transition-colors duration-200 group">
                                             <td className="px-8 py-6 whitespace-nowrap">
                                                 <div className="flex items-center">
                                                     <div className="h-8 w-8 rounded-full bg-gray-100 flex items-center justify-center text-xs font-black text-gray-500 mr-3">
@@ -272,7 +234,7 @@ const ViewResponses = () => {
                                                 <span className="text-sm font-bold text-gray-900">{request.shopName}</span>
                                             </td>
                                             <td className="px-8 py-6 whitespace-nowrap">
-                                                <span className="text-sm font-bold text-red-700 bg-red-50 px-3 py-1 rounded-lg">{request.serialNumber}</span>
+                                                <span className="text-sm font-bold text-sky-700 bg-sky-50 px-3 py-1 rounded-lg">{request.serialNumber}</span>
                                             </td>
                                             <td className="px-8 py-6 whitespace-nowrap text-center">
                                                 {request.receiptUrl ? (
@@ -320,13 +282,13 @@ const ViewResponses = () => {
                                                 <div className="flex items-center justify-center gap-2">
                                                     <button
                                                         onClick={() => { setSelectedRequest(request); setIsViewModalOpen(true); }}
-                                                        className="inline-flex items-center px-4 py-2 bg-red-600 text-white text-xs font-black uppercase tracking-widest rounded-xl hover:bg-red-700 transition-all duration-300 shadow-lg shadow-red-200"
+                                                        className="inline-flex items-center px-4 py-2 bg-sky-600 text-white text-xs font-black uppercase tracking-widest rounded-xl hover:bg-sky-700 transition-all duration-300 shadow-lg shadow-sky-200"
                                                     >
                                                         View
                                                     </button>
                                                     <button
                                                         onClick={() => { setRequestToDelete(request.id); setIsDeleteModalOpen(true); }}
-                                                        className="inline-flex items-center px-3 py-2 bg-gray-100 text-gray-500 text-xs font-black rounded-xl hover:bg-red-50 hover:text-red-600 transition-all duration-300"
+                                                        className="inline-flex items-center px-3 py-2 bg-gray-100 text-gray-500 text-xs font-black rounded-xl hover:bg-sky-50 hover:text-sky-600 transition-all duration-300"
                                                         title="Delete"
                                                     >
                                                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -349,7 +311,7 @@ const ViewResponses = () => {
                             Total Requests: {requests.length}
                         </span>
                         <div className="flex items-center space-x-2">
-                            <div className="w-2 h-2 rounded-full bg-red-600 animate-pulse"></div>
+                            <div className="w-2 h-2 rounded-full bg-sky-600 animate-pulse"></div>
                             <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Live Sync Alpha</span>
                         </div>
                     </div>
@@ -362,12 +324,12 @@ const ViewResponses = () => {
                         <div className="p-10 sm:p-14">
                             <div className="flex justify-between items-center mb-10">
                                 <div>
-                                    <h2 className="text-3xl font-black text-gray-900 tracking-tight">{isEditing ? 'Edit Request' : 'Request Details'}</h2>
-                                    <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mt-1">{isEditing ? 'Update rebate and FOB details' : 'Full Submission Summary'}</p>
+                                    <h2 className="text-3xl font-black text-gray-900 tracking-tight">Request Details</h2>
+                                    <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mt-1">Full Submission Summary</p>
                                 </div>
                                 <button
-                                    onClick={() => { setIsViewModalOpen(false); setIsEditing(false); }}
-                                    className="p-3 bg-gray-50 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-2xl transition-all duration-300"
+                                    onClick={() => { setIsViewModalOpen(false); }}
+                                    className="p-3 bg-gray-50 text-gray-400 hover:text-sky-600 hover:bg-sky-50 rounded-2xl transition-all duration-300"
                                 >
                                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M6 18L18 6M6 6l12 12" />
@@ -385,7 +347,7 @@ const ViewResponses = () => {
                                         {selectedRequest.experience && renderModalField('Experience', selectedRequest.experience)}
                                     </div>
                                     <div className="space-y-0">
-                                        {renderModalField('Serial Number', selectedRequest.serialNumber, 'serialNumber')}
+                                        {renderModalField('Serial Number', selectedRequest.serialNumber)}
                                         {renderModalField('Created At', new Date(selectedRequest.createdAt).toLocaleString())}
                                         {renderModalField('Last Updated', new Date(selectedRequest.updatedAt).toLocaleString())}
                                     </div>
@@ -419,37 +381,12 @@ const ViewResponses = () => {
                             </div>
 
                             <div className="mt-12 pt-8 border-t border-gray-100 flex justify-end space-x-4">
-                                {isEditing ? (
-                                    <>
-                                        <button
-                                            onClick={() => setIsEditing(false)}
-                                            className="px-8 py-3 bg-gray-100 text-gray-600 font-bold rounded-xl hover:bg-gray-200 transition-all duration-300 transform active:scale-95"
-                                        >
-                                            Cancel
-                                        </button>
-                                        <button
-                                            onClick={handleUpdate}
-                                            className="px-8 py-3 bg-red-600 text-white font-bold rounded-xl hover:bg-red-700 transition-all duration-300 transform active:scale-95 shadow-lg"
-                                        >
-                                            Save Changes
-                                        </button>
-                                    </>
-                                ) : (
-                                    <>
-                                        <button
-                                            onClick={() => setIsEditing(true)}
-                                            className="px-8 py-3 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-all duration-300 transform active:scale-95 shadow-lg"
-                                        >
-                                            Edit Details
-                                        </button>
-                                        <button
-                                            onClick={() => setIsViewModalOpen(false)}
-                                            className="px-8 py-3 bg-gray-900 text-white font-bold rounded-xl hover:bg-gray-800 transition-all duration-300 transform active:scale-95 shadow-lg"
-                                        >
-                                            Close
-                                        </button>
-                                    </>
-                                )}
+                                <button
+                                    onClick={() => setIsViewModalOpen(false)}
+                                    className="px-8 py-3 bg-gray-900 text-white font-bold rounded-xl hover:bg-gray-800 transition-all duration-300 transform active:scale-95 shadow-lg"
+                                >
+                                    Close
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -460,8 +397,8 @@ const ViewResponses = () => {
                 <div className="fixed inset-0 z-[110] flex items-center justify-center p-4 bg-gray-900/40 backdrop-blur-sm animate-fade-in">
                     <div className="bg-white w-full max-w-sm rounded-[2rem] shadow-2xl border border-gray-100 overflow-hidden animate-slide-up">
                         <div className="p-8 text-center">
-                            <div className="w-16 h-16 bg-red-50 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                                <svg className="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <div className="w-16 h-16 bg-sky-50 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                                <svg className="w-8 h-8 text-sky-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                                 </svg>
                             </div>
@@ -471,7 +408,7 @@ const ViewResponses = () => {
                                 <button
                                     onClick={handleDelete}
                                     disabled={isDeleting}
-                                    className={`py-3 bg-red-600 text-white font-bold rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform active:scale-95 ${isDeleting ? 'opacity-70' : ''}`}
+                                    className={`py-3 bg-sky-600 text-white font-bold rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform active:scale-95 ${isDeleting ? 'opacity-70' : ''}`}
                                 >
                                     {isDeleting ? 'Deleting...' : 'Yes, Delete'}
                                 </button>
