@@ -45,7 +45,8 @@ const PurchaseRequestForm = () => {
         publicEmail: '',
         serialNumber: '',
         shopName: '',
-        experience: ''
+        marketingInterest: '',
+        marketingExperience: ''
     });
 
     const handleChange = (e) => {
@@ -128,7 +129,8 @@ const PurchaseRequestForm = () => {
                 publicEmail: '',
                 serialNumber: '',
                 shopName: '',
-                experience: ''
+                marketingInterest: '',
+                marketingExperience: ''
             });
             setReceiptFile(null);
             setReceiptPreview(null);
@@ -348,20 +350,63 @@ const PurchaseRequestForm = () => {
                         />
                     </div>
 
+                    {/* Marketing Interest Radio */}
                     <div className="bg-white rounded-xl shadow-sm p-8 border border-gray-200 group focus-within:shadow-md transition-shadow">
-                        <label className="block text-base font-medium text-gray-900 mb-4">
-                            Tell us your best Hikmicro experience (150 words minimum) <span className="text-sky-600">*</span>
+                        <label className="block text-base font-medium text-gray-900 mb-6">
+                            Are you interested in sharing your experience with Hikmicro for future marketing? Selected experiences may receive Hikmicro HABROK HE25 2.0 and Hikmicro merchandise. <span className="text-sky-600">*</span>
                         </label>
-                        <textarea
-                            name="experience"
-                            requisky
-                            value={formData.experience}
-                            onChange={handleChange}
-                            rows="6"
-                            className="w-full border border-gray-300 rounded-xl focus:border-sky-600 focus:outline-none p-4 transition-all duration-300 bg-transparent text-gray-900 placeholder-gray-400 group-focus-within:border-sky-600"
-                            placeholder="Your answer"
-                        ></textarea>
+                        <div className="space-y-4">
+                            <label className="flex items-center space-x-3 cursor-pointer group/radio">
+                                <div className="relative flex items-center justify-center">
+                                    <input
+                                        type="radio"
+                                        name="marketingInterest"
+                                        value="Yes"
+                                        required
+                                        checked={formData.marketingInterest === 'Yes'}
+                                        onChange={handleChange}
+                                        className="peer appearance-none w-5 h-5 border-2 border-gray-300 rounded-full checked:border-sky-600 transition-all duration-300"
+                                    />
+                                    <div className="absolute w-2.5 h-2.5 bg-sky-600 rounded-full scale-0 peer-checked:scale-100 transition-transform duration-300"></div>
+                                </div>
+                                <span className={`text-sm font-medium transition-colors duration-300 ${formData.marketingInterest === 'Yes' ? 'text-sky-600 font-bold' : 'text-gray-600'}`}>Yes</span>
+                            </label>
+
+                            <label className="flex items-center space-x-3 cursor-pointer group/radio">
+                                <div className="relative flex items-center justify-center">
+                                    <input
+                                        type="radio"
+                                        name="marketingInterest"
+                                        value="No"
+                                        required
+                                        checked={formData.marketingInterest === 'No'}
+                                        onChange={handleChange}
+                                        className="peer appearance-none w-5 h-5 border-2 border-gray-300 rounded-full checked:border-sky-600 transition-all duration-300"
+                                    />
+                                    <div className="absolute w-2.5 h-2.5 bg-sky-600 rounded-full scale-0 peer-checked:scale-100 transition-transform duration-300"></div>
+                                </div>
+                                <span className={`text-sm font-medium transition-colors duration-300 ${formData.marketingInterest === 'No' ? 'text-sky-600 font-bold' : 'text-gray-600'}`}>No</span>
+                            </label>
+                        </div>
                     </div>
+
+                    {/* Conditional Management Experience */}
+                    {formData.marketingInterest === 'Yes' && (
+                        <div className="bg-white rounded-xl shadow-sm p-8 border border-gray-200 group focus-within:shadow-md transition-shadow animate-fade-in">
+                            <label className="block text-base font-medium text-gray-900 mb-4">
+                                Share your best Hikmicro experience in 150 words or less. Weekly best answers receive merchandise (beanie, jacket, shirt, stubbie holder). The top entry will win the HE25L 2.0 on the previously mentioned date. <span className="text-sky-600">*</span>
+                            </label>
+                            <textarea
+                                name="marketingExperience"
+                                required
+                                value={formData.marketingExperience}
+                                onChange={handleChange}
+                                rows="6"
+                                className="w-full border border-gray-300 rounded-xl focus:border-sky-600 focus:outline-none p-4 transition-all duration-300 bg-transparent text-gray-900 placeholder-gray-400 group-focus-within:border-sky-600"
+                                placeholder="Your answer"
+                            ></textarea>
+                        </div>
+                    )}
 
                     <div className="flex items-center justify-between py-6">
                         <button

@@ -9,7 +9,7 @@ exports.createPurchaseRequest = async (req, res) => {
     try {
         const {
             employeeName, phoneNumber, publicEmail,
-            serialNumber, shopName, experience
+            serialNumber, shopName, marketingInterest, marketingExperience
         } = req.body;
 
         const files = req.files;
@@ -58,7 +58,8 @@ exports.createPurchaseRequest = async (req, res) => {
             publicEmail,
             serialNumber,
             shopName,
-            experience: experience || '',
+            marketingInterest: marketingInterest || 'No',
+            marketingExperience: marketingExperience || '',
             adminEmail,
             adminName,
             receiptUrl,

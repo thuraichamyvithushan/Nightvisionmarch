@@ -194,6 +194,7 @@ const ViewResponses = () => {
                                     <th className="px-8 py-6 text-left text-xs font-black text-gray-400 uppercase tracking-[0.2em]">Serial</th>
                                     <th className="px-8 py-6 text-center text-xs font-black text-gray-400 uppercase tracking-[0.2em]">Receipt</th>
                                     <th className="px-8 py-6 text-center text-xs font-black text-gray-400 uppercase tracking-[0.2em]">Box Photo</th>
+                                    <th className="px-8 py-6 text-left text-xs font-black text-gray-400 uppercase tracking-[0.2em]">Interest</th>
                                     <th className="px-8 py-6 text-left text-xs font-black text-gray-400 uppercase tracking-[0.2em]">Experience</th>
                                     <th className="px-8 py-6 text-left text-xs font-black text-gray-400 uppercase tracking-[0.2em]">Date</th>
                                     <th className="px-8 py-6 text-center text-xs font-black text-gray-400 uppercase tracking-[0.2em]">Action</th>
@@ -270,9 +271,14 @@ const ViewResponses = () => {
                                                     <span className="text-gray-300 text-[10px] font-black uppercase">None</span>
                                                 )}
                                             </td>
+                                            <td className="px-8 py-6 whitespace-nowrap text-center">
+                                                <span className={`text-[10px] font-black uppercase px-2 py-1 rounded-md ${request.marketingInterest === 'Yes' ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-500'}`}>
+                                                    {request.marketingInterest || 'No'}
+                                                </span>
+                                            </td>
                                             <td className="px-8 py-6">
-                                                <p className="text-xs font-medium text-gray-600 line-clamp-2 max-w-[200px]" title={request.experience}>
-                                                    {request.experience || '---'}
+                                                <p className="text-xs font-medium text-gray-600 line-clamp-2 max-w-[200px]" title={request.marketingExperience || request.experience}>
+                                                    {request.marketingExperience || request.experience || '---'}
                                                 </p>
                                             </td>
                                             <td className="px-8 py-6 whitespace-nowrap text-sm font-bold text-gray-500">
@@ -344,7 +350,9 @@ const ViewResponses = () => {
                                         {renderModalField('Name', selectedRequest.employeeName)}
                                         {renderModalField('Phone Number', selectedRequest.phoneNumber)}
                                         {renderModalField('Email', selectedRequest.publicEmail)}
-                                        {selectedRequest.experience && renderModalField('Experience', selectedRequest.experience)}
+                                        {renderModalField('Marketing Interest', selectedRequest.marketingInterest)}
+                                        {selectedRequest.marketingExperience && renderModalField('Marketing Experience', selectedRequest.marketingExperience)}
+                                        {selectedRequest.experience && renderModalField('Old Experience', selectedRequest.experience)}
                                     </div>
                                     <div className="space-y-0">
                                         {renderModalField('Serial Number', selectedRequest.serialNumber)}
