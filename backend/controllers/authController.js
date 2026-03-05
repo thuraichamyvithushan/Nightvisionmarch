@@ -88,7 +88,7 @@ exports.syncUser = async (req, res) => {
         if (isNewUser && role === 'pending') {
             try {
                 // To Admin
-                const adminEmail = process.env.ADMIN_EMAIL || 'admin@huntsmanoptics.com.au';
+                const adminEmail = process.env.ADMIN_EMAIL || 'admin@nightvision.com.au';
                 await sendEmail(adminEmail, 'newRegistrationAdmin', {
                     user: { ...userData, uid }
                 });

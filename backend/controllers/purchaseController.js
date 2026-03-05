@@ -9,8 +9,7 @@ exports.createPurchaseRequest = async (req, res) => {
     try {
         const {
             employeeName, phoneNumber, publicEmail,
-            serialNumber, shopName, marketingInterest,
-            experience
+            serialNumber, shopName, experience
         } = req.body;
 
         const files = req.files;
@@ -50,7 +49,7 @@ exports.createPurchaseRequest = async (req, res) => {
             boxPhotoUrl = await uploadToImgBB(files.boxPhoto[0].buffer);
         }
 
-        const adminEmail = req.user?.email || process.env.ADMIN_EMAIL || 'admin@huntsmanoptics.com';
+        const adminEmail = req.user?.email || process.env.ADMIN_EMAIL || 'admin@nightvision.com';
         const adminName = req.user?.name || 'Staff Member';
 
         const newRequest = {
@@ -59,7 +58,6 @@ exports.createPurchaseRequest = async (req, res) => {
             publicEmail,
             serialNumber,
             shopName,
-            marketingInterest,
             experience: experience || '',
             adminEmail,
             adminName,

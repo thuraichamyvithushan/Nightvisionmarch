@@ -14,7 +14,7 @@ const PendingApproval = () => {
     return (
         <div className="min-h-screen bg-[#fafafa] flex flex-col items-center justify-center p-4 sm:p-8 font-['Inter',sans-serif]">
             <div className="mb-12">
-                <img src="/assets/logo.png" alt="Huntsman Optics" className="h-16 w-auto" />
+                <img src="/assets/logo.png" alt="Night Vision" className="h-16 w-auto" />
             </div>
 
             <div className="w-full max-w-2xl bg-white rounded-[3rem] shadow-[0_40px_100px_-20px_rgba(0,0,0,0.08)] border border-gray-100/50 overflow-hidden text-center">
@@ -58,7 +58,7 @@ const PendingApproval = () => {
             </div>
 
             <div className="mt-8 text-center text-[10px] font-black text-gray-400 uppercase tracking-[0.3em]">
-                © 2026 Huntsman Form
+                © 2026 Night Vision Form
             </div>
         </div>
     );

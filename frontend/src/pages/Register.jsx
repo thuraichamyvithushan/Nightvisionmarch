@@ -86,7 +86,7 @@ const Register = () => {
                                 autoComplete="email"
                                 required
                                 className="w-full border-b-2 border-gray-300 focus:border-red-600 focus:outline-none py-3 transition-all duration-300 bg-transparent"
-                                placeholder="admin@huntsmanoptics.com.au"
+                                placeholder="admin@nightvision.com.au"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                             />

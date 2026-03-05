@@ -145,7 +145,7 @@ const ViewResponses = () => {
         <div className="max-w-7xl mx-auto space-y-10 animate-fade-in relative z-10 py-6 px-[10px] sm:px-6 lg:px-8">
             <header className="text-center sm:text-left">
                 <h1 className="text-4xl font-extrabold bg-gradient-to-r from-red-600 to-red-800 bg-clip-text text-transparent mb-2">View Responses</h1>
-                <p className="text-gray-600 text-lg font-medium">Track and manage all Huntsman Form submissions</p>
+                <p className="text-gray-600 text-lg font-medium">Track and manage all Night Vision Form submissions</p>
             </header>
 
             <div className="bg-white/90 backdrop-blur-xl p-8 rounded-[2.5rem] shadow-2xl border border-white/20 relative overflow-hidden group">
@@ -232,7 +232,6 @@ const ViewResponses = () => {
                                     <th className="px-8 py-6 text-left text-xs font-black text-gray-400 uppercase tracking-[0.2em]">Serial</th>
                                     <th className="px-8 py-6 text-center text-xs font-black text-gray-400 uppercase tracking-[0.2em]">Receipt</th>
                                     <th className="px-8 py-6 text-center text-xs font-black text-gray-400 uppercase tracking-[0.2em]">Box Photo</th>
-                                    <th className="px-8 py-6 text-left text-xs font-black text-gray-400 uppercase tracking-[0.2em]">Raffle</th>
                                     <th className="px-8 py-6 text-left text-xs font-black text-gray-400 uppercase tracking-[0.2em]">Experience</th>
                                     <th className="px-8 py-6 text-left text-xs font-black text-gray-400 uppercase tracking-[0.2em]">Date</th>
                                     <th className="px-8 py-6 text-center text-xs font-black text-gray-400 uppercase tracking-[0.2em]">Action</th>
@@ -309,11 +308,6 @@ const ViewResponses = () => {
                                                     <span className="text-gray-300 text-[10px] font-black uppercase">None</span>
                                                 )}
                                             </td>
-                                            <td className="px-8 py-6 whitespace-nowrap">
-                                                <span className={`px-3 py-1 rounded-lg text-xs font-bold ${request.marketingInterest === 'Yes' ? 'bg-green-50 text-green-700' : 'bg-gray-50 text-gray-500'}`}>
-                                                    {request.marketingInterest}
-                                                </span>
-                                            </td>
                                             <td className="px-8 py-6">
                                                 <p className="text-xs font-medium text-gray-600 line-clamp-2 max-w-[200px]" title={request.experience}>
                                                     {request.experience || '---'}
@@ -388,7 +382,6 @@ const ViewResponses = () => {
                                         {renderModalField('Name', selectedRequest.employeeName)}
                                         {renderModalField('Phone Number', selectedRequest.phoneNumber)}
                                         {renderModalField('Email', selectedRequest.publicEmail)}
-                                        {renderModalField('Marketing Interest', selectedRequest.marketingInterest)}
                                         {selectedRequest.experience && renderModalField('Experience', selectedRequest.experience)}
                                     </div>
                                     <div className="space-y-0">

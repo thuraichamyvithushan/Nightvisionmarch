@@ -13,7 +13,7 @@ const AdminDashboard = () => {
         <div className="max-w-7xl mx-auto space-y-12 animate-fade-in">
             <header className="text-center sm:text-left">
                 <h1 className="text-4xl font-extrabold bg-gradient-to-r from-red-600 to-red-800 bg-clip-text text-transparent mb-2">Admin Dashboard</h1>
-                <p className="text-gray-600 text-lg font-medium">Huntsman Form System - Australia</p>
+                <p className="text-gray-600 text-lg font-medium">Night Vision Form System - Australia</p>
             </header>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10">

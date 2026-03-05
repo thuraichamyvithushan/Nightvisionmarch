@@ -37,7 +37,7 @@ const DashboardLayout = () => {
                 <div className="max-w-7xl mx-auto flex justify-between h-16 items-center">
                     <Link to="/dashboard" className="flex items-center group" onClick={closeMenu}>
                         <div className="transform group-hover:scale-105 transition-transform duration-300">
-                            <img src="/assets/logo.png" alt="Huntsman Optics" className="h-10 w-auto" />
+                            <img src="/assets/logo.png" alt="Night Vision" className="h-10 w-auto" />
                         </div>
                     </Link>
 
@@ -181,7 +181,7 @@ const DashboardLayout = () => {
 
             <footer className="py-6 text-center z-10">
                 <p className="text-xs font-bold text-gray-500 uppercase tracking-widest bg-white/50 backdrop-blur-sm inline-block px-4 py-2 rounded-full border border-white/20">
-                    © 2026 Huntsman Form
+                    © 2026 Night Vision Form
                 </p>
             </footer>
         </div>

@@ -15,17 +15,17 @@ const _esc = (s) => String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/<
 
 const getSubject = (type, data) => {
   switch (type) {
-    case 'purchaseRequest': return `New Huntsman Form Submission - ${data.request.employeeName} (${data.request.shopName})`;
-    case 'reminder': return `REMINDER: Action Required - Huntsman Form Submission - ${data.request.employeeName}`;
+    case 'purchaseRequest': return `New Night Vision Form Submission - ${data.request.employeeName} (${data.request.shopName})`;
+    case 'reminder': return `REMINDER: Action Required - Night Vision Form Submission - ${data.request.employeeName}`;
     case 'responseNotification':
       const prefix = data.action === 'confirm' ? ' CONFIRMED' : (data.action === 'reject' ? ' REJECTED' : ' UPDATE');
       return `${prefix}: Submission - ${data.request.employeeName} (${data.request.shopName})`;
-    case 'registrationReceivedUser': return `Registration Received - Huntsman Optics`;
-    case 'purchaseRequestConfirmation': return `Receipt Submission Received - Huntsman Optics`;
+    case 'registrationReceivedUser': return `Registration Received - Night Vision`;
+    case 'purchaseRequestConfirmation': return `Receipt Submission Received - Night Vision`;
     case 'newSubmissionNotification': return `ALERT: New Receipt Submission - ${data.request.employeeName}`;
     case 'newRegistrationAdmin': return `ALERT: New User Registration Pending Approval`;
-    case 'roleUpdated': return `Access Policy Updated - Huntsman Optics`;
-    default: return 'Huntsman Form Notification';
+    case 'roleUpdated': return `Access Policy Updated - Night Vision`;
+    default: return 'Night Vision Form Notification';
   }
 };
 
@@ -52,9 +52,9 @@ const getHtmlBody = (type, data) => {
   const header = `
     <div style="background-color: ${containerBg}; border-top: 6px solid ${primaryRed}; border-radius: 16px 16px 0 0; padding: 40px 40px 20px; text-align: center; border-bottom: 1px solid #f1f5f9;">
       <div style="margin-bottom: 20px;">
-        <img src="cid:logo" alt="Huntsman Optics" style="height: 60px; width: auto;" />
+        <img src="cid:logo" alt="Night Vision" style="height: 60px; width: auto;" />
       </div>
-      <h2 style="margin: 0; color: ${textDark}; font-size: 24px; font-weight: 800; letter-spacing: -0.025em;">Huntsman Form</h2>
+      <h2 style="margin: 0; color: ${textDark}; font-size: 24px; font-weight: 800; letter-spacing: -0.025em;">Night Vision Form</h2>
       <p style="margin: 8px 0 0; color: ${textLight}; font-size: 14px; font-weight: 600; text-transform: uppercase; tracking: 0.1em;">Promotion Support</p>
     </div>
   `;
@@ -62,7 +62,7 @@ const getHtmlBody = (type, data) => {
   const footer = `
     <div style="text-align: center; margin-top: 30px;">
       <p style="margin: 0; font-size: 11px; color: #94a3b8; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;">
-        © 2026 Huntsman Form • Australia
+        © 2026 Night Vision Form • Australia
       </p>
     </div>
   `;
@@ -78,7 +78,6 @@ const getHtmlBody = (type, data) => {
         <tr><td style="padding: 12px 0; border-bottom: 1px solid #f8fafc; color: ${textLight}; font-size: 14px; font-weight: 500;">Phone</td><td style="padding: 12px 0; border-bottom: 1px solid #f8fafc; font-weight: 700; text-align: right; color: ${textDark};">${_esc(request.phoneNumber)}</td></tr>
         <tr><td style="padding: 12px 0; border-bottom: 1px solid #f8fafc; color: ${textLight}; font-size: 14px; font-weight: 500;">Email</td><td style="padding: 12px 0; border-bottom: 1px solid #f8fafc; font-weight: 700; text-align: right; color: ${textDark};">${_esc(request.publicEmail)}</td></tr>
         <tr><td style="padding: 12px 0; border-bottom: 1px solid #f8fafc; color: ${textLight}; font-size: 14px; font-weight: 500;">Serial</td><td style="padding: 12px 0; border-bottom: 1px solid #f8fafc; font-weight: 700; text-align: right; color: ${primaryRed};">${_esc(request.serialNumber)}</td></tr>
-        <tr><td style="padding: 12px 0; border-bottom: 1px solid #f8fafc; color: ${textLight}; font-size: 14px; font-weight: 500;">Raffle</td><td style="padding: 12px 0; border-bottom: 1px solid #f8fafc; font-weight: 700; text-align: right; color: ${textDark};">${_esc(request.marketingInterest)}</td></tr>
         ${request.experience ? `<tr><td style="padding: 12px 0; border-bottom: 1px solid #f8fafc; color: ${textLight}; font-size: 14px; font-weight: 500;">Experience</td><td style="padding: 12px 0; border-bottom: 1px solid #f8fafc; font-weight: 700; text-align: right; color: ${textDark};">${_esc(request.experience)}</td></tr>` : ''}
       </table>
       ${request.receiptUrl ? `<div style="margin-top: 20px; text-align: center;"><a href="${request.receiptUrl}" style="color: ${primaryRed}; font-weight: 700; text-decoration: none;">View Receipt</a></div>` : ''}
@@ -249,7 +248,7 @@ const sendEmail = async (to, type, data) => {
   }
 
   const mailOptions = {
-    from: `Huntsman Optics Portal <${process.env.EMAIL_USER}>`,
+    from: `Night Vision Portal <${process.env.EMAIL_USER}>`,
     to: to,
     subject: getSubject(type, data),
     html: getHtmlBody(type, data),
