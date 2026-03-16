@@ -43,6 +43,7 @@ const PurchaseRequestForm = () => {
         employeeName: '',
         phoneNumber: '',
         publicEmail: '',
+        address: '', // Added address field
         serialNumber: '',
         shopName: '',
         marketingInterest: '',
@@ -127,6 +128,7 @@ const PurchaseRequestForm = () => {
                 employeeName: '',
                 phoneNumber: '',
                 publicEmail: '',
+                address: '', // Reset address field
                 serialNumber: '',
                 shopName: '',
                 marketingInterest: '',
@@ -234,6 +236,22 @@ const PurchaseRequestForm = () => {
                             className="w-full sm:w-2/3 border-b border-gray-300 focus:border-sky-600 focus:outline-none py-2 transition-all duration-300 bg-transparent text-gray-900 placeholder-gray-400 group-focus-within:border-sky-600"
                             placeholder="Your answer"
                         />
+                    </div>
+
+                    {/* Postal Address */}
+                    <div className="bg-white rounded-xl shadow-sm p-8 border border-gray-200 group focus-within:shadow-md transition-shadow">
+                        <label className="block text-base font-medium text-gray-900 mb-6">
+                            Postal Address <span className="text-sky-600">*</span>
+                        </label>
+                        <textarea
+                            name="address"
+                            required
+                            value={formData.address}
+                            onChange={handleChange}
+                            rows="3"
+                            className="w-full border-b border-gray-300 focus:border-sky-600 focus:outline-none py-2 transition-all duration-300 bg-transparent text-gray-900 placeholder-gray-400 group-focus-within:border-sky-600 resize-none"
+                            placeholder="Your answer"
+                        ></textarea>
                     </div>
 
                     {/* Receipt Upload */}

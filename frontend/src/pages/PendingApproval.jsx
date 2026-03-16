@@ -32,7 +32,7 @@ const PendingApproval = () => {
                             Hello <span className="text-sky-600 font-bold">{user?.displayName || user?.email}</span>, your registration has been received.
                         </p>
                         <p className="text-gray-400 text-sm max-w-sm mx-auto">
-                            For security purposes, an administrator must manually verify your cskyentials before you can access the dashboard.
+                            For security purposes, an administrator must manually verify your credentials before you can access the dashboard.
                         </p>
                     </div>
 

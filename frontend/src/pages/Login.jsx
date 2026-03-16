@@ -18,8 +18,7 @@ const Login = () => {
             await login(email, password);
             navigate('/dashboard');
         } catch (err) {
-            console.error("Login component error:", err);
-            setError(err.message.includes('auth/invalid-cskyential') ? 'Invalid email or password' : err.message);
+            setError(err.message.includes('auth/invalid-credential') ? 'Invalid email or password' : err.message);
             setLoading(false);
         }
     };
@@ -32,7 +31,7 @@ const Login = () => {
                 <div className="bg-white/95 backdrop-blur-md p-10 rounded-3xl shadow-2xl border border-gray-100 hover:shadow-[0_20px_60px_rgba(0,0,0,0.1)] transition-all duration-500">
                     <div className="mb-8 text-center">
                         <h2 className="text-2xl font-bold text-gray-900">Welcome Back</h2>
-                        <p className="mt-2 text-sm text-gray-500">Please enter your admin cskyentials</p>
+                        <p className="mt-2 text-sm text-gray-500">Please enter your admin credentials</p>
                     </div>
                     <form className="space-y-6" onSubmit={handleSubmit}>
                         <div className="group">

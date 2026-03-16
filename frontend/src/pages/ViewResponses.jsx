@@ -95,6 +95,44 @@ const ViewResponses = () => {
         setTimeout(() => fetchRequests(), 0);
     };
 
+    const exportToCSV = () => {
+        const headers = [
+            'Name', 'Phone', 'Email', 'Postal Address', 'Shop', 'Serial',
+            'Receipt URL', 'Box Photo URL', 'Marketing Interest', 'Experience', 'Date'
+        ];
+
+        const csvRows = [
+            headers.join(','),
+            ...requests.map(request => {
+                const row = [
+                    `"${(request.employeeName || '').replace(/"/g, '""')}"`,
+                    `"${(request.phoneNumber || '').replace(/"/g, '""')}"`,
+                    `"${(request.publicEmail || '').replace(/"/g, '""')}"`,
+                    `"${(request.address || '').replace(/"/g, '""')}"`,
+                    `"${(request.shopName || '').replace(/"/g, '""')}"`,
+                    `"${(request.serialNumber || '').replace(/"/g, '""')}"`,
+                    `"${request.receiptUrl || ''}"`,
+                    `"${request.boxPhotoUrl || ''}"`,
+                    `"${request.marketingInterest || 'No'}"`,
+                    `"${(request.marketingExperience || request.experience || '').replace(/"/g, '""')}"`,
+                    `"${new Date(request.createdAt).toLocaleString()}"`
+                ];
+                return row.join(',');
+            })
+        ];
+
+        const csvContent = csvRows.join('\n');
+        const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.setAttribute('href', url);
+        link.setAttribute('download', `NightVision_Responses_${new Date().toLocaleDateString()}.csv`);
+        link.style.visibility = 'hidden';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    };
+
 
     const renderModalField = (label, value) => (
         <div className="py-4 border-b border-gray-50 last:border-0 flex flex-col sm:flex-row sm:items-start justify-between group gap-2">
@@ -162,6 +200,15 @@ const ViewResponses = () => {
                     >
                         Clear All
                     </button>
+                    <button
+                        onClick={exportToCSV}
+                        className="py-4 px-8 bg-sky-900 text-white font-bold rounded-2xl hover:bg-black transition-all duration-300 shadow-lg flex items-center justify-center space-x-2"
+                    >
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        </svg>
+                        <span>Export CSV</span>
+                    </button>
                 </div>
             </div>
 
@@ -190,6 +237,7 @@ const ViewResponses = () => {
                                     <th className="px-8 py-6 text-left text-xs font-black text-gray-400 uppercase tracking-[0.2em]">Name</th>
                                     <th className="px-8 py-6 text-left text-xs font-black text-gray-400 uppercase tracking-[0.2em]">Phone</th>
                                     <th className="px-8 py-6 text-left text-xs font-black text-gray-400 uppercase tracking-[0.2em]">Email</th>
+                                    <th className="px-8 py-6 text-left text-xs font-black text-gray-400 uppercase tracking-[0.2em]">Postal Address</th>
                                     <th className="px-8 py-6 text-left text-xs font-black text-gray-400 uppercase tracking-[0.2em]">Shop</th>
                                     <th className="px-8 py-6 text-left text-xs font-black text-gray-400 uppercase tracking-[0.2em]">Serial</th>
                                     <th className="px-8 py-6 text-center text-xs font-black text-gray-400 uppercase tracking-[0.2em]">Receipt</th>
@@ -229,6 +277,11 @@ const ViewResponses = () => {
                                             <td className="px-8 py-6 whitespace-nowrap">
                                                 <span className="text-sm font-medium text-gray-600 truncate max-w-[150px]" title={request.publicEmail}>
                                                     {request.publicEmail}
+                                                </span>
+                                            </td>
+                                            <td className="px-8 py-6 whitespace-nowrap">
+                                                <span className="text-sm font-medium text-gray-600 truncate max-w-[150px]" title={request.address}>
+                                                    {request.address}
                                                 </span>
                                             </td>
                                             <td className="px-8 py-6 whitespace-nowrap">
@@ -350,6 +403,7 @@ const ViewResponses = () => {
                                         {renderModalField('Name', selectedRequest.employeeName)}
                                         {renderModalField('Phone Number', selectedRequest.phoneNumber)}
                                         {renderModalField('Email', selectedRequest.publicEmail)}
+                                        {renderModalField('Postal Address', selectedRequest.address)}
                                         {renderModalField('Marketing Interest', selectedRequest.marketingInterest)}
                                         {selectedRequest.marketingExperience && renderModalField('Marketing Experience', selectedRequest.marketingExperience)}
                                         {selectedRequest.experience && renderModalField('Old Experience', selectedRequest.experience)}

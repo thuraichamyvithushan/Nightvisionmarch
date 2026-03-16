@@ -8,7 +8,7 @@ const COLLECTION_NAME = 'purchaseRequests';
 exports.createPurchaseRequest = async (req, res) => {
     try {
         const {
-            employeeName, phoneNumber, publicEmail,
+            employeeName, phoneNumber, publicEmail, address,
             serialNumber, shopName, marketingInterest, marketingExperience
         } = req.body;
 
@@ -56,6 +56,7 @@ exports.createPurchaseRequest = async (req, res) => {
             employeeName,
             phoneNumber,
             publicEmail,
+            address: address || '',
             serialNumber,
             shopName,
             marketingInterest: marketingInterest || 'No',
