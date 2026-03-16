@@ -21,10 +21,7 @@ const getSubject = (type, data) => {
       const prefix = data.action === 'confirm' ? ' CONFIRMED' : (data.action === 'reject' ? ' REJECTED' : ' UPDATE');
       return `${prefix}: Submission - ${data.request.employeeName} (${data.request.shopName})`;
     case 'registrationReceivedUser': return `Registration Received - Night Vision`;
-    case 'purchaseRequestConfirmation': return `Receipt Submission Received - Night Vision`;
-    case 'newSubmissionNotification': return `ALERT: New Receipt Submission - ${data.request.employeeName}`;
-    case 'newRegistrationAdmin': return `ALERT: New User Registration Pending Approval`;
-    case 'roleUpdated': return `Access Policy Updated - Night Vision`;
+    case 'orderDispatched': return `Your HIKMICRO Order Has Been Dispatched`;
     default: return 'Night Vision Form Notification';
   }
 };
@@ -219,20 +216,25 @@ const getHtmlBody = (type, data) => {
     `;
   }
 
-  if (type === 'purchaseRequestConfirmation') {
+  if (type === 'orderDispatched') {
     return `
       <html>
         <body style="${commonStyles}">
           <div style="max-width: 600px; margin: 0 auto;">
             ${header}
-            <div style="padding: 40px; text-align: center; background-color: ${containerBg};">
-              <h2 style="color: ${textDark}; margin: 0;">Submission Received</h2>
-              <p style="color: ${textLight}; margin-top: 15px;">Hello <strong>${_esc(request.employeeName)}</strong>,</p>
-              <p style="color: ${textLight};">Thank you for your submission. Our team is reviewing it.</p>
-            </div>
-            ${submissionDetails(request)}
-            <div style="padding: 40px; text-align: center; border-radius: 0 0 16px 16px; border-top: 1px solid #f1f5f9; background-color: ${containerBg};">
-              <p style="color: ${textLight}; font-size: 13px;">Automated confirmation. No action required.</p>
+            <div style="padding: 40px; background-color: ${containerBg};">
+              <p style="color: ${textDark}; font-size: 16px; margin-bottom: 25px;">Dear Customer,</p>
+              <p style="color: ${textDark}; font-size: 15px; margin-bottom: 20px; line-height: 1.8;">
+                Thank you for your purchase of the HIKMICRO M15 Trail Camera. Your SD card promotion has been applied, and the order has now been dispatched to your address.
+              </p>
+              <p style="color: ${textDark}; font-size: 15px; margin-bottom: 30px;">
+                If you have any questions, please feel free to contact us.
+              </p>
+              <div style="color: ${textDark}; font-size: 15px; font-weight: 600;">
+                Regards,<br>
+                Warehouse Team<br>
+                Huntsman Optics
+              </div>
             </div>
             ${footer}
           </div>

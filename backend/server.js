@@ -52,6 +52,7 @@ app.post('/api/public/purchase-requests', cpUpload, purchaseController.createPur
 app.post('/api/admin/purchase-requests', authController.protect, authController.adminOnly, cpUpload, purchaseController.createPurchaseRequest);
 app.get('/api/admin/purchase-requests', authController.protect, authController.adminOnly, purchaseController.getPurchaseRequests);
 app.get('/api/admin/purchase-requests/:id', authController.protect, authController.adminOnly, purchaseController.getPurchaseRequestById);
+app.put('/api/admin/dispatch-request/:id', authController.protect, authController.adminOnly, purchaseController.dispatchOrder);
 app.put('/api/admin/purchase-requests/:id', authController.protect, authController.adminOnly, purchaseController.updatePurchaseRequest);
 app.delete('/api/admin/purchase-requests/:id', authController.protect, authController.adminOnly, purchaseController.deletePurchaseRequest);
 

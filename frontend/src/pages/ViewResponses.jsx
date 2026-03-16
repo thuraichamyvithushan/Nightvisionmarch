@@ -21,6 +21,10 @@ const ViewResponses = () => {
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
     const [isDeleting, setIsDeleting] = useState(false);
 
+    const [requestToDispatch, setRequestToDispatch] = useState(null);
+    const [isDispatchModalOpen, setIsDispatchModalOpen] = useState(false);
+    const [isDispatching, setIsDispatching] = useState(false);
+
     useEffect(() => {
         fetchRequests();
     }, [user, filters.status]);
@@ -79,6 +83,35 @@ const ViewResponses = () => {
             setError(err.message);
         } finally {
             setIsDeleting(false);
+        }
+    };
+
+    const handleDispatch = async () => {
+        if (!requestToDispatch) return;
+        setIsDispatching(true);
+
+        try {
+            const token = await user.getIdToken();
+            const response = await fetch(
+                `${API_BASE_URL}/api/admin/dispatch-request/${requestToDispatch}`,
+                {
+                    method: 'PUT',
+                    headers: { 'Authorization': `Bearer ${token}` }
+                }
+            );
+
+            if (response.ok) {
+                setRequests(requests.map(r => r.id === requestToDispatch ? { ...r, status: 'Dispatched' } : r));
+                setIsDispatchModalOpen(false);
+                setRequestToDispatch(null);
+            } else {
+                const data = await response.json();
+                setError(data.error || 'Failed to dispatch order');
+            }
+        } catch (err) {
+            setError(err.message);
+        } finally {
+            setIsDispatching(false);
         }
     };
 
@@ -262,7 +295,7 @@ const ViewResponses = () => {
                                     </tr>
                                 ) : (
                                     requests.map((request) => (
-                                        <tr key={request.id} className="hover:bg-sky-50/30 transition-colors duration-200 group">
+                                        <tr key={request.id} className={`${request.status === 'Dispatched' ? 'bg-green-100 hover:bg-green-200/50' : 'hover:bg-sky-50/30'} transition-colors duration-200 group`}>
                                             <td className="px-8 py-6 whitespace-nowrap">
                                                 <div className="flex items-center">
                                                     <div className="h-8 w-8 rounded-full bg-gray-100 flex items-center justify-center text-xs font-black text-gray-500 mr-3">
@@ -345,6 +378,14 @@ const ViewResponses = () => {
                                                     >
                                                         View
                                                     </button>
+                                                    {request.status !== 'Dispatched' && (
+                                                        <button
+                                                            onClick={() => { setRequestToDispatch(request.id); setIsDispatchModalOpen(true); }}
+                                                            className="inline-flex items-center px-4 py-2 bg-green-600 text-white text-xs font-black uppercase tracking-widest rounded-xl hover:bg-green-700 transition-all duration-300 shadow-lg shadow-green-200"
+                                                        >
+                                                            Dispatch
+                                                        </button>
+                                                    )}
                                                     <button
                                                         onClick={() => { setRequestToDelete(request.id); setIsDeleteModalOpen(true); }}
                                                         className="inline-flex items-center px-3 py-2 bg-gray-100 text-gray-500 text-xs font-black rounded-xl hover:bg-sky-50 hover:text-sky-600 transition-all duration-300"
@@ -476,6 +517,36 @@ const ViewResponses = () => {
                                 </button>
                                 <button
                                     onClick={() => setIsDeleteModalOpen(false)}
+                                    className="py-3 bg-gray-100 text-gray-600 font-bold rounded-xl hover:bg-gray-200 transition-all duration-300"
+                                >
+                                    Cancel
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
+            {isDispatchModalOpen && (
+                <div className="fixed inset-0 z-[110] flex items-center justify-center p-4 bg-gray-900/40 backdrop-blur-sm animate-fade-in">
+                    <div className="bg-white w-full max-w-sm rounded-[2rem] shadow-2xl border border-gray-100 overflow-hidden animate-slide-up">
+                        <div className="p-8 text-center">
+                            <div className="w-16 h-16 bg-green-50 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                                <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                </svg>
+                            </div>
+                            <h3 className="text-xl font-black text-gray-900 mb-2">Confirm Dispatch?</h3>
+                            <p className="text-gray-500 text-sm mb-8 font-medium">An automated dispatch email will be sent to the customer immediately.</p>
+                            <div className="flex flex-col space-y-3">
+                                <button
+                                    onClick={handleDispatch}
+                                    disabled={isDispatching}
+                                    className={`py-3 bg-green-600 text-white font-bold rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform active:scale-95 ${isDispatching ? 'opacity-70' : ''}`}
+                                >
+                                    {isDispatching ? 'Sending Email...' : 'Confirm Dispatch'}
+                                </button>
+                                <button
+                                    onClick={() => { setIsDispatchModalOpen(false); setRequestToDispatch(null); }}
                                     className="py-3 bg-gray-100 text-gray-600 font-bold rounded-xl hover:bg-gray-200 transition-all duration-300"
                                 >
                                     Cancel

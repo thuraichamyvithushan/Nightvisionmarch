@@ -169,3 +169,36 @@ exports.deletePurchaseRequest = async (req, res) => {
     }
 };
 
+
+exports.dispatchOrder = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const docRef = db.collection(COLLECTION_NAME).doc(id);
+        const doc = await docRef.get();
+
+        if (!doc.exists) {
+            return res.status(404).json({ error: 'Request not found' });
+        }
+
+        const requestData = doc.data();
+
+        // Update status in Firestore
+        await docRef.update({
+            status: 'Dispatched',
+            dispatchedAt: new Date().toISOString(),
+            updatedAt: new Date().toISOString()
+        });
+
+        // Send email to customer
+        if (requestData.publicEmail) {
+            await sendEmail(requestData.publicEmail, 'orderDispatched', {
+                request: { id, ...requestData }
+            });
+        }
+
+        res.json({ message: 'Order dispatched successfully and email sent' });
+    } catch (error) {
+        console.error('Error dispatching order:', error);
+        res.status(500).json({ error: error.message });
+    }
+};
