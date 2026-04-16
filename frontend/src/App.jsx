@@ -15,6 +15,7 @@ import Unauthorized from './pages/Unauthorized';
 import DashboardLayout from './components/DashboardLayout';
 import PendingApproval from './pages/PendingApproval';
 import ForgotPassword from './pages/ForgotPassword'; // Assuming ForgotPassword needs to be imported for the new route
+import OfferClosed from './pages/OfferClosed';
 
 const ProtectedRoute = ({ children, allowedRoles }) => {
   const { user, role, loading, syncing } = useAuth();
@@ -68,7 +69,8 @@ function App() {
           <Route path="/unauthorized" element={<Unauthorized />} />
           <Route path="/forgot-password" element={<PublicRoute><ForgotPassword /></PublicRoute>} />
           <Route path="/respond/:token" element={<ResponseConfirmation />} />
-          <Route path="/" element={<PublicRoute><PurchaseRequestForm /></PublicRoute>} />
+          <Route path="/" element={<PublicRoute><OfferClosed /></PublicRoute>} />
+          <Route path="/claim-offer" element={<PublicRoute><PurchaseRequestForm /></PublicRoute>} />
 
           {/* Private Routes */}
           <Route path="/dashboard" element={<ProtectedRoute allowedRoles={['admin', 'representative']}><DashboardLayout /></ProtectedRoute>}>
